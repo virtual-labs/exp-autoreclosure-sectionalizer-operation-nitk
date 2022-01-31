@@ -2,38 +2,153 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Autoreclosers are more attractive than relays in distribution feeder protection as",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "It has inbuilt breaker",
+        "b": "It has more number of shot capability",
+        "c": "Both it has inbuilt breaker and it has more number of shot capability",
+        "d": "None of the above"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
       "correctAnswer": "c",
-      "difficulty": "beginner"
+      "difficulty": ""
+    },
+    {
+      "question": "From below figure, the speed ratio of 20K and 20T fuses are respectively<br><img src='./images/quiz.png' height=300 width=400/>",
+      "answers": {
+        "a": "7.55 and 14.56",
+        "b": "14.56 and 7.55",
+        "c": "13.59 and 7.12",
+        "d": "7.12 and 13.59"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": ""
+    },
+    {
+      "question": "Time interval between the autorecloser trip and the consecutive reclosing attempt is termed as",
+      "answers": {
+        "a": "Reclosing time",
+        "b": "Lockout time",
+        "c": "Total operating time",
+        "d": "All"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": ""
+    },
+    {
+      "question": "Sectionalisers should have breakers (or relays with breakers) or reclosers working as a backup device. True or False?",
+      "answers": {
+        "a": "True",
+        "b": "False"
+      },
+      "explanations": {
+        "a": "",
+        "b": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": ""
+    },
+    {
+      "question": "Zone of operation of the fuse is limited by",
+      "answers": {
+        "a": "Minimum melting time",
+        "b": "Maximum clearing time",
+        "c": "Both minimum melting time and maximum clearing time",
+        "d": "None"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": ""
+    },
+    {
+      "question": "Consider 5P20 class CT ratio: 1000/1, Normal rated current of 900 A. Consider a overloading of 10 % while calculating plug setting of the relay. Let the initial set TMS be 0.15. Relay settings has ranges for PSM of 50% to 200% in steps of 25% and TMS setting range of 0.1 to 1.1 in step of 0.05. The operating time for a three phase fault of 10 kA is less for",
+      "answers": {
+        "a": "IEC Normal inverse",
+        "b": "IEC Extreme inverse",
+        "c": "IEC Very inverse",
+        "d": "Same in all the cases"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": ""
+    },
+    {
+      "question": "Consider 5P20 class CT ratio:1000/1, Normal rated current of 900 A. Consider a overloading of 10 % while calculating plug setting of the relay with IEC EI curve. Relay settings has ranges for PSM of 50% to 200% in steps of 25% and TMS setting range of 0.1 to 1.1 in step of 0.05. For a 10 kA three phase fault, operating time is 0.242 s. TMS setting of the relay is",
+      "answers": {
+        "a": "0.2",
+        "b": "0.25",
+        "c": "0.3",
+        "d": "0.35"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": ""
+    },
+    {
+      "question": "Consider that the sectionaliser S2 is absent in the Figure 1 of demonstration/procedure. The probable count setting of the sectionaliser S3 would be<br><img src='./images/quiz2.png' height=300 width=400/>",
+      "answers": {
+        "a": "1",
+        "b": "2",
+        "c": "3",
+        "d": "4"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "2",
+      "difficulty": ""
+    },
+    {
+      "question": "After the recloser is completely locked out the sectionaliser to which first closing command is given as per the network configuration of Figure 1 is<br><img src='./images/quiz2.png' height=300 width=400/>",
+      "answers": {
+        "a": "S1",
+        "b": "S2",
+        "c": "S3",
+        "d": "S4"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": ""
     }
   ]
 }
