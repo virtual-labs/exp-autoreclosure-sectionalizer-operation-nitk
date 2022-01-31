@@ -1,0 +1,90 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "Generally single phase loads having transformers have the following type of fuse as main protection.",
+      "answers": {
+        "a": "H type",
+        "b": "K type",
+        "c": "T type",
+        "d": "Anyone of them"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": ""
+    },
+    {
+      "question": "Better reliability can be observed in distribution system with",
+      "answers": {
+        "a": "Ring type network",
+        "b": "Radial type network",
+        "c": "Same in both type of network",
+        "d": "All"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": ""
+    },
+    {
+      "question": "Sectionaliser can",
+      "answers": {
+        "a": "Break and close on load",
+        "b": "Break but cannot close on load",
+        "c": "Close on but cannot break load",
+        "d": "Neither can break or close on load"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": ""
+    },
+    {
+      "question": "The final operation of the recloser for a close in permanent fault is",
+      "answers": {
+        "a": "Lockout operation",
+        "b": "3rd reclosing time",
+        "c": "Last reclosing time",
+        "d": "Last curve operating time"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": ""
+    },
+    {
+      "question": "Consider 5P20 class CT ratio:1000/1, Normal rated current of 900 A. Consider a overloading of 10 % while calculating plug setting of the relay with IEC SI curve. Let the initial set TMS be 0.1. Relay settings has ranges for PSM of 50% to 200% in steps of 25% and TMS setting range of 0.1 to 1.1 in step of 0.05. The operating time for a three phase fault of 15 kA is (Hint: Calculate PS, then calculate the operating time using the curve characteristics equation)",
+      "answers": {
+        "a": "0.151",
+        "b": "0.252",
+        "c": "0.353",
+        "d": "0.454"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": ""
+    }
+  ]
+}
