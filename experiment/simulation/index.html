@@ -1,129 +1,263 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>SOLVE</title>
-<link rel="stylesheet" href="css/transformer.css" />
-<script>
-var simsubscreennum=0;
-var temp=0;
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOLVE - SA</title>
+    <link rel="stylesheet" href="./css/autoreclosure.css" />
+    <script defer type="text/javascript" src="js/datasets.js"></script>
+    <script defer type="text/javascript" src="js/drawOnCanvas.js"></script>
+    <script defer type="text/javascript" src="js/transientF1.js"></script>
+    <script defer type="text/javascript" src="js/permanentF1.js"></script>
+    <script defer type="text/javascript" src="js/transientF2.js"></script>
+    <script defer type="text/javascript" src="js/permanentF2.js"></script>
+    <script defer type="text/javascript" src="js/transientF3.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <img src="./images/logo_nitk.png" alt="logo" class="logo" />
+        <h1>Autoreclosure And Sectionalizer Operation Demonstation</h1>
+      </div>
+      <div class="simsubscreen grid" id="canvas0">
+        <div class="actions">
+          <ol>
+            <li id="tF1" class="listHover" onclick="goToNextPage(this)">
+              Click here to create a
+              <span class="yellow">transient</span> fault at
+              <span class="red">F1</span>
+            </li>
+            <li id="pF1" class="listHover" onclick="goToNextPage(this)">
+              Click here to create a
+              <span class="blue">permanent</span> fault at
+              <span class="red">F1</span>
+            </li>
+            <li id="tF2" class="listHover" onclick="goToNextPage(this)">
+              Click here to create a
+              <span class="yellow">transient</span> fault at
+              <span class="red">F2</span>
+            </li>
+            <li id="pF2" class="listHover" onclick="goToNextPage(this)">
+              Click here to create a
+              <span class="blue">permanent</span> fault at
+              <span class="red">F2</span>
+            </li>
+            <li id="tF3" class="listHover" onclick="goToNextPage(this)">
+              Click here to create a
+              <span class="yellow">transient</span> fault at
+              <span class="red">F3</span>
+            </li>
+          </ol>
+        </div>
+        <div class="color-codes">
+          <h3>COLOR CODES</h3>
+          <ul>
+            <li class="color-list">
+              <div class="line backgroundGreen"></div>
+              <div class="arrowFont">&#8680;</div>
+              <p>Circuit closed condition</p>
+            </li>
+            <li class="color-list">
+              <div class="line backgroundRed"></div>
+              <div class="arrowFont">&#8680;</div>
+              <p>Circuit open condition</p>
+            </li>
+            <li class="color-list">
+              <div class="line backgroundBlue"></div>
+              <div class="arrowFont">&#8680;</div>
+              <p>Fault Feed</p>
+            </li>
+            <li class="color-list">
+              <div class="box backgroundGreen"></div>
+              <div class="arrowFont">&#8680;</div>
+              <p>Breaker close at recloser RC</p>
+            </li>
+            <li class="color-list">
+              <div class="box backgroundRed"></div>
+              <div class="arrowFont">&#8680;</div>
+              <p>Breaker open at recloser RC</p>
+            </li>
+            <li class="color-list">
+              <div class="box backgroundBlue"></div>
+              <div class="arrowFont">&#8680;</div>
+              <p>Recloser/Relay pickup</p>
+            </li>
+            <li class="color-list">
+              <div class="ellipse backgroundGreen"></div>
+              <div class="arrowFont">&#8680;</div>
+              <p>Sectionaliser closed with current flow through it</p>
+            </li>
+            <li class="color-list">
+              <div class="ellipse backgroundRed"></div>
+              <div class="arrowFont">&#8680;</div>
+              <p>Sectionaliser open condition</p>
+            </li>
+            <li class="color-list">
+              <div class="ellipse backgroundGray"></div>
+              <div class="arrowFont">&#8680;</div>
+              <p>Sectionaliser closed with zero current flow through it</p>
+            </li>
+          </ul>
+        </div>
+        <div class="main-img">
+          <img src="images/circuit.png" id="main" />
+          <div class="downArrow d1">&#8681;</div>
+          <div class="downArrow d2">&#8681;</div>
+          <div class="downArrow d3">&#8681;</div>
 
+          <p
+            class="tooltipContent tip1"
+            onmouseover="toggleTip(this)"
+            onmouseout="toggleTip(this)"
+          >
+            <span>Substation</span><br /><span>Relay</span>
+          </p>
+          <p
+            class="tooltipContent tip2"
+            onmouseover="toggleTip(this)"
+            onmouseout="toggleTip(this)"
+          >
+            <span>Auto Recloser</span>
+          </p>
+          <p
+            class="tooltipContent tip3"
+            onmouseover="toggleTip(this)"
+            onmouseout="toggleTip(this)"
+          >
+            <span>Sectionaliser 3</span>
+          </p>
+          <p
+            class="tooltipContent tip4"
+            onmouseover="toggleTip(this)"
+            onmouseout="toggleTip(this)"
+          >
+            <span>Sectionaliser 2</span>
+          </p>
+          <p
+            class="tooltipContent tip5"
+            onmouseover="toggleTip(this)"
+            onmouseout="toggleTip(this)"
+          >
+            <span>Sectionaliser 1</span>
+          </p>
+          <p
+            class="tooltipContent tip6"
+            onmouseover="toggleTip(this)"
+            onmouseout="toggleTip(this)"
+          >
+            <span>Sectionaliser 4</span>
+          </p>
+        </div>
+      </div>
+      <div class="simsubscreen hide" id="canvas1">
+        <canvas id="canvas" class="canvas" width="900" height="500"></canvas>
+        <canvas
+          id="canvasImg"
+          class="canvas c2"
+          width="900"
+          height="500"
+        ></canvas>
+        <h3 id="heading" class="faultHead">Transient Fault at F1</h3>
+        <div class="controlRoom" id="controlContent">
+          <p>HEALTHY SYSTEM</p>
+        </div>
+        <!-- <span onclick="backToMainPage();">BACK</span> -->
+        <span class="backArrow" onclick="backToMainPage();">&#8678;</span>
+        <!-- Faults -->
+        <div id="divFault1" class="divFault1" style="visibility: hidden">
+          <p class="tooltipContent t1" id="t1">
+            <em
+              ><span>Click here to </span><br /><span id="faultF1"
+                >create a Fault</span
+              ></em
+            ><br /><span class="faultArrow">&darr;</span><br /><span
+              id="spf1"
+              class="spf1"
+              >F1</span
+            >
+          </p>
+          <img
+            src="images/f.png"
+            id="fault1"
+            class="fault1"
+            onclick="processFault1()"
+          />
+          <img
+            src="images/f.png"
+            id="fakefault1"
+            class="fakefault1"
+            onclick=""
+          />
+        </div>
 
-</script>
-</head>
+        <div id="divFault2" class="divFault2" style="visibility: hidden">
+          <p class="tooltipContent t2" id="t2">
+            <em
+              ><span>Click here to </span><br /><span id="faultF2"
+                >create a Fault</span
+              ></em
+            ><br /><span class="faultArrow">&darr;</span><br /><span
+              id="spf2"
+              class="spf2"
+              >F2</span
+            >
+          </p>
+          <img
+            src="images/f.png"
+            id="fault2"
+            class="fault2"
+            onclick="processFault2()"
+          />
+          <img
+            src="images/f.png"
+            id="fakefault2"
+            class="fakefault2"
+            onclick=""
+          />
+        </div>
 
-<body style="margin:0; font-family:verdana;">
-<div id="simscreen">
-<div id="title"><h5>Autorecloser and Sectionaliser Operation Demonstration</h5></div>
+        <div id="divFault3" class="divFault3" style="visibility: hidden">
+          <p class="tooltipContent t3" id="t3">
+            <em
+              ><span>Click here to </span><br /><span id="faultF3"
+                >create a Fault</span
+              ></em
+            ><br /><span class="faultArrow">&darr;</span><br /><span
+              id="spf3"
+              class="spf3"
+              >F3</span
+            >
+          </p>
+          <img
+            src="images/f.png"
+            id="fault3"
+            class="fault3"
+            onclick="processFault3()"
+          />
+          <img
+            src="images/f.png"
+            id="fakefault3"
+            class="fakefault3"
+            onclick=""
+          />
+        </div>
 
-<div class="simsubscreen" id="canvas0" style="visibility: visible;">
-	<img src="images/circuit.png" id="main" style="position: absolute; left: 50px; top: 120px; width: 600px"/>
-	<div style="position: absolute; left: 650px; top: 150px; height:420px; width:290px; border: 2px dashed rgb(211, 207, 207);"><p style="text-align: center;border: 1px">COLOR CODES</p><img src="images/colorCode.png" style="width: 280px;padding: 5px;"/></div>
-	<ol style="position: absolute; left: 310px;border: 1px dashed lightgray; font-size: 14px; ">
-		<li id="tF1" class="listHover" onclick="goToNextPage(this)" >Click here to create a <span style="color: yellow">transient</span> fault at <span style="color: red">F1</span></li>
-		<li id="pF1" class="listHover" onclick="goToNextPage(this)">Click here to create a <span style="color: blue">permanent</span> fault at <span style="color: red">F1</span></li>
-		<li id="tF2" class="listHover" onclick="goToNextPage(this)">Click here to create a <span style="color: yellow">transient</span> fault at <span style="color: red">F2</span></li>
-		<li id="pF2" class="listHover" onclick="goToNextPage(this)">Click here to create a <span style="color: blue">permanent</span> fault at <span style="color: red">F2</span></li>
-		<li id="tF3" class="listHover" onclick="goToNextPage(this)">Click here to create a <span style="color: yellow">transient</span> fault at <span style="color: red">F3</span></li>
-	</ol>
+        <!-- Timers -->
+        <p class="timers timer1" id="timer1"></p>
+        <p class="timers timer2" id="timer2"></p>
 
-
-	<!-- Arrows -->
-	<span class="arrowFont" style="position: absolute;left: 720px;top:192px;opacity: 0;">&#8680;</span>
-	<span class="arrowFont" style="position: absolute;left: 720px;top:223px;opacity: 0;">&#8680;</span>
-	<span class="arrowFont" style="position: absolute;left: 720px;top:259px;opacity: 0;">&#8680;</span>
-	<span class="arrowFont" style="position: absolute;left: 695px;top:299px;opacity: 0;">&#8680;</span>
-	<span class="arrowFont" style="position: absolute;left: 695px;top:336px;opacity: 0;">&#8680;</span>
-	<span class="arrowFont" style="position: absolute;left: 695px;top:372px;opacity: 0;">&#8680;</span>
-	<span class="arrowFont" style="position: absolute;left: 695px;top:412px;opacity: 0;">&#8680;</span>
-	<span class="arrowFont" style="position: absolute;left: 695px;top:462px;opacity: 0;">&#8680;</span>
-	<span class="arrowFont" style="position: absolute;left: 695px;top:508px;opacity: 0;">&#8680;</span>
-
-
-	<!-- 3 arrows downwards -->
-	<span class="downArrow" style="position: absolute;left: 353px;top:238px;">&#8681;</span>
-	<span class="downArrow" style="position: absolute;left: 467px;top:238px;">&#8681;</span>
-	<span class="downArrow"style="position: absolute;left: 577px;top:238px;">&#8681;</span>
-
-
-	<!-- Hover Divisions -->
-	<p class="tooltipContent" style="position: absolute;left: 815px;top: 420px;padding-bottom: 20px;opacity: 0;" onmouseover="toggleTip(this)" onmouseout="toggleTip(this)"> <span>400/5A</span><span>CL-1,10V</span></p>
-
-
-</div>
-
-<div class="simsubscreen" id="canvas1" style="visibility: hidden;">
-	<canvas id="canvas" style="position: absolute;z-index: 155;left: 50px;top:40px;" width="900" height="500"></canvas>
-	<!-- <canvas id="canvas1" style="position: absolute;z-index: 152;left: 50px;top:40px; " width="950" height="750"></canvas>  -->
-	<span class="backArrow" style="position: absolute;left: 494px;top:551px;opacity: 1;cursor: pointer;font-size: 10px" onclick="backToMainPage();">BACK</span>
-	<span class="backArrow" style="position: absolute;left: 475px;top:508px;opacity: 1;cursor: pointer;" onclick="backToMainPage();">&#8678;</span>
-	<p style="position: absolute;left: 135px;top:330px;color:rgb(247, 58, 58)">Supervisory Control Room</p>
-	<div class="controlRoom" id="controlContent" >
-		<p>HEALTHY SYSTEM</p>
-	</div>
-	<img src="images/lines2.png" style="position: absolute; left: 50px; top: 50px; width: 800px;z-index:100"/>
-
-	<!-- Faults -->
-	<div id="divFault1" style="visibility: hidden;">
-		<p class="tooltipContent" id="t1" style="position: absolute; left: 724px; top: 140px;width: 200px"><em><span>Click here to </span><span id="faultF1">create a Fault</span></em><span class="faultArrow">&darr;</span><span id="spf1" style="color:white;visibility: hidden;">F1</span></p>
-		<img src="images/f.png" id="fault1" style="position: absolute; left: 724px; top: 230px;width:12px;cursor:pointer;z-index:162;" onclick="processFault1()"/>
-		<img src="images/f.png" id="fakefault1" style="position: absolute; left: 724px; top: 230px;width:12px;cursor:pointer;z-index:162;visibility: hidden;" onclick=""/>
-	</div>
-	
-	<div id="divFault2" style="visibility: hidden;">
-		<p class="tooltipContent" id="t2" style="position: absolute; left: 590px; top: 140px;width: 200px"><em><span>Click here to </span><span id="faultF2">create a Fault</span></em><span class="faultArrow">&darr;</span><span id="spf2" style="color:white;visibility: hidden;">F2</span></p>
-		<img src="images/f.png" id="fault2" style="position: absolute; left: 590px; top: 230px;width:12px;cursor:pointer;z-index:162;" onclick="processFault2()"/>
-		<img src="images/f.png" id="fakefault2" style="position: absolute; left: 590px; top: 230px;width:12px;cursor:pointer;z-index:162;visibility: hidden;" onclick=""/>
-	</div>
-	
-	<div id="divFault3" style="visibility: hidden;">
-		<p class="tooltipContent" id="t3" style="position: absolute; left: 450px; top: 140px;width: 200px"><em><span>Click here to </span><span id="faultF3">create a Fault</span></em><span class="faultArrow">&darr;</span><span id="spf3" style="color:white;visibility: hidden;">F3</span></p>
-		<img src="images/f.png" id="fault3" style="position: absolute; left: 450px; top: 230px;width:12px;cursor:pointer;z-index:162;" onclick="processFault3()"/>
-		<img src="images/f.png" id="fakefault3" style="position: absolute; left: 450px; top: 230px;width:12px;cursor:pointer;z-index:162;visibility: hidden;" onclick=""/>
-	</div>
-	
-
-
-	<!-- Timers -->
-	<p class="timers" id="timer1" style="position: absolute;left:210px;top:238px"></p>
-	<p class="timers" id="timer2" style="position: absolute;left:210px;top:510px"></p>
-
-
-	<!-- Shocks -->
-	<img src="images/fault.png" id="shock1" style="position: absolute; left: 712px; top: 240px;height:55px;cursor:pointer;z-index:162;visibility: hidden;"/>
-	<img src="images/fault.png" id="shock2" style="position: absolute; left: 578px; top: 240px;height:55px;cursor:pointer;z-index:162;visibility: hidden;"/>
-	<img src="images/fault.png" id="shock3" style="position: absolute; left: 440px; top: 240px;height:55px;cursor:pointer;z-index:162;visibility: hidden;"/>
-
-	<h3 id="heading" style="position: absolute;color: goldenrod;left: 380px;top: 50px;text-transform: capitalize;">
-		Transient Fault at F1
-	</h3>
-
-</div>
-
-<p class="tooltipContent" style="position: absolute;left: 90px;top: 238px;padding-bottom: 50px;opacity: 0;" onmouseover="toggleTip(this)" onmouseout="toggleTip(this)"> <span>Substation</span><span>Relay</span></p>
-<p class="tooltipContent" style="position: absolute;left: 160px;top: 250px;padding-bottom: 50px;opacity: 0;" onmouseover="toggleTip(this)" onmouseout="toggleTip(this)"> <span>Auto Recloser</span></p>
-<p class="tooltipContent" style="position: absolute;left: 250px;top: 250px;padding-bottom: 50px;opacity: 0;" onmouseover="toggleTip(this)" onmouseout="toggleTip(this)"> <span>Sectionaliser 3</span></p>
-<p class="tooltipContent" style="position: absolute;left: 350px;top: 250px;padding-bottom: 50px;opacity: 0;" onmouseover="toggleTip(this)" onmouseout="toggleTip(this)"> <span>Sectionaliser 2</span></p>
-<p class="tooltipContent" style="position: absolute;left: 480px;top: 250px;padding-bottom: 50px;opacity: 0;" onmouseover="toggleTip(this)" onmouseout="toggleTip(this)"> <span>Sectionaliser 1</span></p>
-<p class="tooltipContent" style="position: absolute;left: 500px;top: 470px;padding-bottom: 50px;opacity: 0;" onmouseover="toggleTip(this)" onmouseout="toggleTip(this)"> <span>Sectionaliser 4</span></p>
-
-
-<div class="parentPopup" id="parentPopup">
-	<div class="popup" id="popUpContent">    
-		  
-	</div>
-</div>
-
- 
-<div id="copyright"> &copy;<script>document.write(new Date().getFullYear())</script> SOLVE - The Virtual Lab @ NITK Surathkal</div>
-</div>
-<script type="text/javascript" src="js/datasets.js"></script>
-<script type="text/javascript" src="js/drawOnCanvas.js"></script>
-<script type="text/javascript" src="js/transientF1.js"></script>
-<script type="text/javascript" src="js/permanentF1.js"></script>
-<script type="text/javascript" src="js/transientF2.js"></script>
-<script type="text/javascript" src="js/permanentF2.js"></script>
-<script type="text/javascript" src="js/transientF3.js"></script>
-
-</body>
+        <!-- Shocks -->
+        <img src="images/fault.png" id="shock1" class="shock1" />
+        <img src="images/fault.png" id="shock2" class="shock2" />
+        <img src="images/fault.png" id="shock3" class="shock3" />
+      </div>
+      <p class="copyright">
+        <span style="font-weight: 900; font-size: 1.4rem">&copy;&nbsp;</span>
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        SOLVE - The Virtual Lab @ NITK Surathkal
+      </p>
+    </div>
+  </body>
 </html>
